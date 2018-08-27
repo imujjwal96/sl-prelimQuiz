@@ -1,0 +1,14 @@
+{
+    "name": "get-user-profile",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log"
+    },
+    "author": "Ujjwal Bhardwaj",
+    "dependencies": {
+        "request": "^2.83.0",
+        "request-promise": "^4.2.2"
+    }
+}
