@@ -10,7 +10,7 @@ const generateResponse = (status, message) => {
     }
 };
 
-const handler = (event, context, callback) => {
+exports.handler = (event, context, callback) => {
     console.log(JSON.stringify(event, null, 2)); 
 
     const idToken = event.headers.Authorization;
