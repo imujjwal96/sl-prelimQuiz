@@ -1,3 +1,5 @@
+var x = require('assert');
+
 var userController = {
     data: {
         auth0Lock: null,
@@ -66,11 +68,15 @@ var userController = {
         if (showAuthenticationElements) {
             this.uiElements.profileNameLabel.text(profile.nickname || profile.email);
             this.uiElements.profileImage.attr('src', profile.picture);
+            console.log(profile);
         }
 
         this.uiElements.loginButton.toggle(!showAuthenticationElements);
         this.uiElements.logoutButton.toggle(showAuthenticationElements);
         this.uiElements.profileButton.toggle(showAuthenticationElements);
+    },
+    checkEmailVerification: function (profile) {
+        return profile.email_verified == false;
     },
     wireEvents: function () {
         var that = this;
@@ -89,6 +95,7 @@ var userController = {
         });
 
         this.data.auth0Lock.on('authenticated', function (authResult) {
+            console.log(authResult);
             localStorage.setItem('accessToken', authResult.accessToken);
             localStorage.setItem('idToken', authResult.idToken);
             that.getUserProfile(authResult.accessToken, authResult.idToken);
